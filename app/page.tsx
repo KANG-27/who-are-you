@@ -1,13 +1,13 @@
 "use client";
-import RecognizeFace from "@/components/RecognizeFace";
-import SaveFacialDescriptions from "@/components/SaveFacialDescriptions";
+import UnionModels from "@/components/UnionModels";
 
 export default function Home() {
 
+  
+
   return (
     <main className="flex min-h-screen items-center justify-between p-24 gap-5">
-        <SaveFacialDescriptions/>
-        <RecognizeFace/>
+        <UnionModels/>
     </main>
   );
 }

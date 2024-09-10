@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import * as faceapi from 'face-api.js';
+
 
 const RecognizeFace = () => {
   const [imgSelected, setImgSelected] = useState(null);
@@ -18,6 +20,10 @@ const RecognizeFace = () => {
       // Lee el archivo como una URL de datos
       reader.readAsDataURL(event.target.files?.[0]);
     }
+
+    // const refFace = await faceapi.fetchImage('')
+
+
     // setimgSelected(event.target)
   };
 
@@ -29,13 +35,17 @@ const RecognizeFace = () => {
         onChange={(event) => handleImageUpload(event)}
       />
       {imgSelected && (
-        <Image
-          id="personSelected"
-          src={imgSelected}
-          alt="persona"
-          width={500}
-          height={300}
-        />
+        <div>
+          <canvas id="canvaComparate"></canvas>
+          <Image
+            id="personSelected"
+            src={imgSelected}
+            alt="persona"
+            width={500}
+            height={300}
+          />
+
+        </div>
       )}
     </div>
   );

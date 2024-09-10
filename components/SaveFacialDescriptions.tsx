@@ -5,36 +5,12 @@ import { useEffect, useState } from 'react';
 const SaveFacialDescriptions = () => {
   const imgUrl = "/img/Kevin.jpg"; // Ruta correcta hacia tu imagen en la carpeta public
 
-  const [modelsLoaded, setModelsLoaded] = useState(false);
   const [detection, setDetection] = useState<faceapi.WithFaceDescriptor<faceapi.WithFaceLandmarks<{ detection: faceapi.FaceDetection; }, faceapi.FaceLandmarks68>> | undefined>(undefined);
 
-  // Cargar los modelos al montar el componente
-  useEffect(() => {
-    const initializeModels = async () => {
-      await loadModels();
-      setModelsLoaded(true); // Marcar como cargados una vez los modelos estén listos
-    };
-
-    initializeModels();
-  }, []); 
-
-  // Función para cargar los modelos
-  const loadModels = async () => {
-    const MODEL_URL = '/models'; // Asegúrate de tener los modelos en la carpeta `/public/models`
-
-    await Promise.all([
-      faceapi.nets.ssdMobilenetv1.loadFromUri(MODEL_URL),
-      faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
-      faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
-    ]);
-  };
+ 
 
   // Función para cargar la imagen y detectar el rostro
   const cargarImagen = async () => {
-    if (!modelsLoaded) {
-      console.log("Los modelos aún no se han cargado");
-      return;
-    }
 
     // Asegúrate de que el código que accede a `document` se ejecute solo en el cliente
     const person = document.getElementById("person") as HTMLImageElement;
@@ -69,8 +45,8 @@ const SaveFacialDescriptions = () => {
 
   return (
     <div>
-      <button onClick={cargarImagen} disabled={!modelsLoaded}>
-        {modelsLoaded ? 'Almacenar persona' : 'Cargando Modelos...'}
+      <button onClick={cargarImagen}>
+        Almacenar persona 
       </button>
 
       <div style={{ position: 'relative' }}>
