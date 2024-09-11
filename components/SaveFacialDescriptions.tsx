@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 const SaveFacialDescriptions = () => {
-  const imgUrl = "/img/Kevin.jpg"; // Ruta correcta hacia tu imagen en la carpeta public
+  const imgUrl = "/img/willfarrellactor.jpg"; // Ruta correcta hacia tu imagen en la carpeta public
 
   const [detection, setDetection] = useState<faceapi.WithFaceDescriptor<faceapi.WithFaceLandmarks<{ detection: faceapi.FaceDetection; }, faceapi.FaceLandmarks68>> | undefined>(undefined);
 
@@ -12,7 +12,7 @@ const SaveFacialDescriptions = () => {
   // Función para cargar la imagen y detectar el rostro
   const cargarImagen = async () => {
 
-    // Asegúrate de que el código que accede a `document` se ejecute solo en el cliente
+
     const person = document.getElementById("person") as HTMLImageElement;
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
@@ -23,6 +23,8 @@ const SaveFacialDescriptions = () => {
 
       try {
         let detections = await faceapi.detectSingleFace(person).withFaceLandmarks().withFaceDescriptor();
+
+        console.log(detections)
 
         if (detections) {
           setDetection(detections);
