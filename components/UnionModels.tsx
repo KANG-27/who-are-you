@@ -32,7 +32,7 @@ const UnionModels = () =>{
 
   return(
     <>
-    {modelsLoaded?
+    {modelsLoaded ?
         <div className="flex">
             <SaveFacialDescriptions/>
             <RecognizeFace/>
